@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>山东夏考志愿查询</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="theme-burgundy.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="回到首页"><img class="brand-logo" src="assets/yanshuo-logo.png" alt="研硕教育" /><span class="brand-divider"></span><span class="brand-product">山东夏考志愿查询</span></a>
+      <nav><button class="nav-link active" data-view="schools">查学校</button><button class="nav-link" data-view="majors">查专业</button></nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <p class="eyebrow">2025 夏考专科招生信息</p>
+        <h1>把复杂招生表，变成一眼能懂的志愿选择</h1>
+        <p class="hero-copy">查询学校、专业、选科要求、招生计划、学费、最低分与最低位次。</p>
+        <label class="search-box"><span>⌕</span><input id="keyword" type="search" placeholder="搜索学校、专业、城市或专业类别" autocomplete="off" /><button id="clearSearch" aria-label="清除搜索">×</button></label>
+        <div class="quick-search"><button data-keyword="公办">公办院校</button><button data-keyword="双高">双高计划</button><button data-keyword="计算机">计算机类</button><button data-keyword="护理">护理类</button></div>
+      </section>
+
+      <section class="stats" aria-label="数据概览">
+        <div><strong id="schoolTotal">—</strong><span>所学校</span></div><div><strong id="majorTotal">—</strong><span>条专业招生记录</span></div><div><strong>2025</strong><span>数据年份</span></div>
+      </section>
+
+      <section class="workspace">
+        <aside class="filters" id="filters">
+          <div class="filter-head"><h2>筛选条件</h2><button id="resetFilters">重置</button></div>
+          <div class="filter-group" data-school-filter><label>院校性质</label><div class="chip-row"><button class="chip selected" data-filter="nature" data-value="">全部</button><button class="chip" data-filter="nature" data-value="公办">公办</button><button class="chip" data-filter="nature" data-value="民办">民办</button></div></div>
+          <div class="filter-group" data-school-filter><label for="cityFilter">城市</label><select id="cityFilter"><option value="">全部城市</option></select></div>
+          <div class="filter-group" data-school-filter><label for="levelFilter">办学层次</label><select id="levelFilter"><option value="">全部层次</option><option value="专科(高职)">专科（高职）</option><option value="本科">本科</option></select></div>
+          <div class="filter-group"><label for="scoreFilter">最低分不低于</label><input id="scoreFilter" type="range" min="150" max="510" value="150" /><div class="range-value"><span>150</span><strong id="scoreValue">不限</strong><span>510</span></div></div>
+          <div class="filter-group" data-school-filter><label><input id="airConditioning" type="checkbox" /> 有空调</label><label><input id="ensuite" type="checkbox" /> 有独卫</label></div>
+          <div class="filter-group" data-major-filter hidden><label for="subjectFilter">选科要求</label><select id="subjectFilter"><option value="">全部要求</option></select></div>
+          <div class="filter-group" data-major-filter hidden><label for="categoryFilter">专业类别</label><select id="categoryFilter"><option value="">全部类别</option></select></div>
+        </aside>
+
+        <section class="results">
+          <div class="result-toolbar"><div><p id="resultHint">正在载入数据…</p><h2 id="resultTitle">学校列表</h2></div><div class="toolbar-actions"><button id="mobileFilters">筛选</button><select id="sortBy"><option value="scoreDesc">最低分从高到低</option><option value="scoreAsc">最低分从低到高</option><option value="majorDesc">专业数从多到少</option><option value="rateDesc">专升本率从高到低</option></select></div></div>
+          <div id="activeFilters" class="active-filters"></div>
+          <div id="cardList" class="card-list"></div>
+          <button id="loadMore" class="load-more">加载更多</button>
+        </section>
+      </section>
+    </main>
+
+    <dialog id="detailDialog"><button class="dialog-close" aria-label="关闭详情">×</button><div id="detailContent"></div></dialog>
+    <div id="toast" role="status"></div>
+    <script src="data.js"></script><script src="app.js"></script>
+  </body>
+</html>
